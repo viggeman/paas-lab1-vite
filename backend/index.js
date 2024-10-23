@@ -37,13 +37,6 @@ const path = require('path');
 const dotenv = require('dotenv');
 const { Client } = require('pg');
 
-// Load environment variables based on the environment
-if (process.env.NODE_ENV === 'production') {
-  dotenv.config({ path: '.env.production' });
-} else {
-  dotenv.config({ path: '.env.development' });
-}
-
 dotenv.config();
 
 const app = express();
