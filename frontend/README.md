@@ -1,8 +1,49 @@
-# React + Vite
+# Project Documentation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is a school project consisting of a frontend built with React and Vite, and a backend built with Node.js and Express.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
+
+```
+root/
+  backend/
+    files
+  frontend/
+    files
+```
+
+### Backend
+
+The backend is a Node.js application using Express.
+
+#### Scripts
+
+- build-frontend: Builds the frontend and moves the dist folder to the backend.
+- dev: Starts the backend in development mode using nodemon.
+
+### Frontend
+
+The frontend is a React application using Vite.
+
+#### Scripts
+
+- dev: Starts the frontend in development mode using Vite.
+- build: Builds the frontend for production.
+- lint: Runs ESLint to check for code quality issues.
+- preview: Previews the production build.
+
+## Running the Project
+
+### Backend
+
+1. Install dependencies: `npm install`
+2. Run the build script: `npm run build-frontend`
+   _(This will build the frontend and move the dist folder to the backend.)_
+3. Start the backend: `npm run dev`
+
+### Frontend
+
+1. Install dependencies: `npm install`
+2. Start the frontend: `npm run dev`
