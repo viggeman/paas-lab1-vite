@@ -49,6 +49,17 @@ app.get('/api/cities/:id', async (request, response) => {
 app.post('/api/cities', async (request, response) => {
   const { name, population } = request.body;
   try {
+    // Check if the city name already exists
+    const existingCity = await client.query(
+      'SELECT * FROM cities WHERE name = $1',
+      [name]
+    );
+    console.log(existingCity);
+    if (existingCity.rows.length > 0) {
+      response.status(409).send('City name already exists');
+      return;
+    }
+
     const { rows } = await client.query(
       'INSERT INTO cities (name, population) VALUES ($1, $2) RETURNING *',
       [name, population]
@@ -67,6 +78,15 @@ app.put('/api/cities/:id', async (request, response) => {
   // Early return for invalid cityId
   if (isNaN(cityId)) {
     response.status(400).send('City ID must be a number');
+    return;
+  }
+  const existingCity = await client.query(
+    'SELECT * FROM cities WHERE name = $1',
+    [name]
+  );
+  console.log(existingCity);
+  if (existingCity.rows.length > 0) {
+    response.status(409).send('City name already exists');
     return;
   }
   try {

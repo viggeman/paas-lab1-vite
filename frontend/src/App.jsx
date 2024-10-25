@@ -27,12 +27,17 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newCityName, population: parseInt(newCityPopulation, 10) }),
       });
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message);
+      }
       const newCity = await response.json();
       setCities([...cities, newCity]);
       setNewCityName('');
       setNewCityPopulation('');
     } catch (error) {
-      console.error('Error creating city:', error);
+      console.error(error);
     }
   };
 
@@ -43,7 +48,10 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: updatedName, population: parseInt(updatedPopulation, 10) }),
       });
-      console.log(response);
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message);
+      }
       const updatedCity = await response.json();
       console.log(updatedCity);
       setCities(cities.map(city =>
